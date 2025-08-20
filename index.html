@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reflexiones Cristianas</title>
+  <style>
+:root {
+  --color-rojo: #c0392b;
+  --color-bordo: #8d2d2d;
+  --color-blanco: #fff;
+  --color-gris: #f4f4f4;
+  --color-negro: #222;
+  --color-fondo: linear-gradient(135deg, #fff 0%, #f4f4f4 100%);
+  --color-tarjeta: #fff;
+  --color-texto: #222;
+  --color-acento: #c0392b;
+  --color-cita: #8d2d2d;
+  --color-sombra: rgba(192,57,43,0.10);
+  --color-gradiente: linear-gradient(120deg, #c0392b 0%, #8d2d2d 100%);
+  --color-gradiente-suave: linear-gradient(120deg, #fff 0%, #f4f4f4 100%);
+  --color-hero: linear-gradient(120deg, #fff 60%, #f4f4f4 100%);
+}
+
+/* Ajuste para que el contenido no quede tapado por la barra */
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.7;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+  min-height: 100vh;
+  transition: background 0.5s;
+  padding-top: 72px; /* Ajusta según el alto de tu nav */
+}
+
+/* Barra de navegación fija y horizontal SIEMPRE */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background: var(--color-blanco);
+  box-shadow: 0 2px 16px var(--color-sombra);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  z-index: 1000;
+  border-bottom: 2px solid var(--color-rojo);
+  animation: fadeInDown 1s;
+}
+
+nav a {
+  color: var(--color-negro);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+nav a::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 0;
+  background: var(--color-rojo);
+  border-radius: 2px;
+  transition: width 0.3s;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+nav a:hover, nav a:focus {
+  background: var(--color-gradiente-suave);
+  color: var(--color-rojo);
+  box-shadow: 0 2px 8px var(--color-sombra);
+}
+nav a:hover::after, nav a:focus::after {
+  width: 100%;
+}
+
+/* Responsive: barra horizontal también en móviles */
+@media (max-width: 900px) {
+  nav {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0.7rem 0;
+  }
+  body {
+    padding-top: 62px;
+  }
+}
+@media (max-width: 600px) {
+  nav {
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+  body {
+    padding-top: 56px;
+  }
+}
+
+/* Encabezado */
+.header {
+  background: var(--color-gradiente-suave);
+  box-shadow: 0 4px 24px var(--color-sombra);
+  padding: 2.5rem 1rem 2rem 1rem;
+  border-bottom: 2px solid var(--color-rojo);
+  text-align: center;
+  position: relative;
+  animation: fadeInDown 1.2s;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.logo-img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 4px solid var(--color-rojo);
+  box-shadow: 0 2px 12px var(--color-sombra);
+  background: var(--color-blanco);
+  transition: transform 0.3s;
+  animation: bounceIn 1.5s;
+}
+.logo-img:hover {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.titulo {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--color-rojo);
+  margin: 0;
+  letter-spacing: 2.5px;
+  text-shadow: 0 2px 8px var(--color-sombra);
+  font-family: 'Playfair Display', serif;
+  text-align: left;
+  animation: fadeInLeft 1.3s;
+}
+
+/* Hero principal */
+.hero {
+  background: var(--color-hero);
+  border-radius: 28px;
+  box-shadow: 0 6px 32px var(--color-sombra);
+  margin: 2.5rem auto 2.5rem auto;
+  max-width: 900px;
+  padding: 4rem 2rem 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1.4s;
+}
+
+.hero h2 {
+  font-size: 2.7rem;
+  color: var(--color-rojo);
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1.5px;
+  animation: fadeInUp 1.6s;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  color: var(--color-bordo);
+  margin-bottom: 2.2rem;
+  animation: fadeInUp 1.7s;
+}
+
+/* Tarjetas/secciones */
+section {
+  background: var(--color-tarjeta);
+  border-radius: 22px;
+  box-shadow: 0 2px 16px var(--color-sombra);
+  padding: 3rem 2.5rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  position: relative;
+  color: var(--color-texto);
+  animation: fadeInUp 1.8s;
+}
+
+section h2 {
+  color: var(--color-rojo);
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  animation: fadeInUp 2s;
+}
+
+blockquote {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--color-negro);
+  border-left: 7px solid var(--color-rojo);
+  background: var(--color-gris);
+  padding: 1.2rem 2rem;
+  margin: 1.5rem 0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px var(--color-sombra);
+  position: relative;
+  animation: fadeInUp 2.2s;
+}
+
+.cita {
+  display: block;
+  margin-top: 0.8rem;
+  font-size: 1.1rem;
+  color: var(--color-bordo);
+  font-weight: 600;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+/* Reflexión con imagen a la derecha */
+.reflexion {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+.reflexion-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reflexion img {
+  flex: 1;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  min-height: 280px;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 4px 24px rgba(192,57,43,0.13);
+  margin: 0;
+  display: block;
+  align-self: stretch;
+}
+
+.reflexion-content p {
+  font-size: 1.18rem;
+  color: var(--color-negro);
+  margin-bottom: 1.2rem;
+}
+
+#reflexion-cita {
+  font-style: italic;
+  color: var(--color-bordo);
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+}
+
+/* Responsive: imagen arriba del texto en pantallas chicas */
+@media (max-width: 900px) {
+  .reflexion {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .reflexion img {
+    width: 100%;
+    max-width: 100%;
+    min-height: 180px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Preguntas para reflexionar */
+#preguntas-reflexion {
+  background: var(--color-gris);
+  border-radius: 24px;
+  box-shadow: 0 6px 32px var(--color-sombra);
+  margin-top: 2.5rem;
+  padding: 3rem 2.5rem;
+  color: var(--color-texto);
+  animation: fadeInUp 1.3s;
+  max-width: 900px;
+  font-size: 1.18rem;
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+#preguntas-reflexion h2 {
+  color: var(--color-rojo);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+}
+
+#preguntas-reflexion form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+#preguntas-reflexion label {
+  font-weight: 700;
+  color: var(--color-negro);
+  font-size: 1.18rem;
+  margin-bottom: 0.7rem;
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+#preguntas-reflexion div {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+#preguntas-reflexion input[type="radio"] {
+  accent-color: var(--color-rojo);
+  margin-right: 0.5em;
+  transform: scale(1.3);
+  cursor: pointer;
+  transition: accent-color 0.2s;
+}
+
+#preguntas-reflexion label[style] {
+  background: var(--color-blanco);
+  border: 2px solid var(--color-rojo);
+  border-radius: 12px;
+  padding: 0.7rem 1.3rem;
+  font-size: 1.08rem;
+  color: var(--color-negro);
+  box-shadow: 0 2px 8px var(--color-sombra);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+#preguntas-reflexion label[style]:hover,
+#preguntas-reflexion label[style]:focus-within {
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+  border-color: var(--color-bordo);
+  transform: scale(1.05);
+}
+
+/* Redes sociales */
+.contact-links {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 2.6s;
+}
+
+.contact-links a {
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px var(--color-sombra);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 1px;
+}
+.contact-links a:hover {
+  background: var(--color-bordo);
+  color: var(--color-blanco);
+  transform: translateY(-2px) scale(1.07);
+}
+
+/* Footer */
+footer {
+  background: var(--color-gradiente-suave);
+  color: var(--color-bordo);
+  border-top: 2px solid var(--color-rojo);
+  text-align: center;
+  padding: 2.5rem 1rem 2rem 1rem;
+  font-size: 1rem;
+  margin-top: 3rem;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -2px 12px var(--color-sombra);
+  animation: fadeInUp 2.8s;
+}
+
+/* Animaciones mágicas */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px);}
+  to { opacity: 1; transform: translateX(0);}
+}
+@keyframes bounceIn {
+  0% { transform: scale(0.7);}
+  60% { transform: scale(1.15);}
+  80% { transform: scale(0.95);}
+  100% { transform: scale(1);}
+}
+
+/* Efecto hover en tarjetas */
+section:hover, .hero:hover, #preguntas-reflexion:hover {
+  box-shadow: 0 8px 32px var(--color-sombra);
+  transform: translateY(-2px) scale(1.01);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <img src="imagenes/logo.jpeg" alt="Logo" class="logo-img">
+      <h1 class="titulo">Reflexiones Cristianas</h1>
+    </div>
+  </header>
+
+  <!-- AGREGA ESTO AQUÍ -->
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#versiculo">Versículo del día</a>
+    <a href="#reflexion">Reflexión</a>
+    <a href="#redes">Redes Sociales</a>
+  </nav>
+  
+  <section class="hero" id="inicio">
+    <h2>Palabras que transforman el alma</h2>
+    <p>Cada día una reflexión de esperanza para tu corazón ✝️</p>
+  </section>
+
+  <!-- Versículo del día -->
+  <section id="versiculo">
+    <h2>📖 Versículo del Día</h2>
+    <blockquote id="versiculo-texto"></blockquote>
+  </section>
+
+  <!-- Reflexión del día -->
+<section class="reflexion" id="reflexion">
+  <div class="reflexion-content">
+    <h2>📅 Reflexión del Día</h2>
+    <p id="reflexion-texto"></p>
+    <p id="reflexion-cita" class="cita"></p>
+  </div>
+  <img src="imagenes/20-08.jpeg" alt="Imagen ilustrativa de la reflexión">
+</section>
+
+  <!-- Preguntas para reflexionar (se genera por JS) -->
+  <section id="preguntas-reflexion"></section>
+
+  <!-- Redes sociales -->
+  <section id="redes">
+    <h2>📬 Seguime en mis redes sociales</h2>
+    <div class="contact-links">
+      <a href="https://whatsapp.com/channel/0029Vb699rgGpLHWR0YqxB19" target="_blank">Canal de WhatsApp</a>
+      <a href="http://tiktok.com/@reflexionesdiarias81" target="_blank">TikTok</a>
+      <a href="https://www.facebook.com/share/15GbnzWPP73/" target="_blank">Facebook</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Reflexiones Cristianas Diarias. Todos los derechos reservados.
+  </footer>
+
+  <!-- Script de contenido dinámico -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const contenidos = [
+    {
+      versiculo: "Clama a mí, y yo te responderé…",
+      cita: 'Jeremias 3:33',
+      reflexion: 'Este versículo no es solo una promesa, es una invitación. Dios no nos pide perfección, nos pide sinceridad. Él responde no siempre como esperamos, pero siempre como necesitamos. A veces su respuesta es paz en medio del caos, otras veces es fuerza para seguir, y muchas veces es simplemente su presencia que nos envuelve y nos recuerda: “No estás solo. ”Hoy, no dejes de orar. Aunque no veas aún el milagro, aunque el cielo parezca callado, sigue clamando. Porque el Dios que prometió responder, nunca olvida a quien confía en Él. Tu oración tiene eco en el cielo. Y su respuesta, aunque tardía, siempre llega a tiempo.',
+      imagen: "imagenes/20-08.jpeg",
+      preguntas: [
+        {
+          texto: '¿Cuando oras y no ves respuesta inmediata, ¿qué sueles sentir?',
+          opciones: ['Paciencia y esperanza', 'Duda e incertidumbre', 'Paz al saber que Dios tiene el control']
+        },
+        {
+          texto: '¿Qué es lo que más esperas recibir en la oración?',
+          opciones: ['Fuerza para seguir adelante', 'Respuestas claras a mis preguntas', 'La certeza de que Dios está conmigo']
+        },
+        {
+          texto: '¿Para vos, ¿qué significa “Clamar a Dios”?',
+          opciones: ['Hablar con sinceridad desde el corazón', 'Buscar ayuda en los momentos difíciles', 'Abrir el alma y confiar en que Él escucha']
+        }
+      ]
+    },
+    {
+      versiculo: 'Aunque mi padre y mi madre me dejaran, Jehová con todo me recogerá',
+      cita: 'Salmo 27:10',
+      reflexion: 'Hay momentos en la vida en los que el abandono duele más que cualquier herida física. Cuando quienes prometieron estar, se van. Cuando el silencio pesa más que mil palabras. Pero en medio de esa soledad, hay una presencia que no se apaga: la de Dios. Él no es como los hombres que fallan, ni como los vínculos que se rompen. Su amor no depende de nuestras fuerzas, ni de nuestra perfección. Él permanece. Incluso cuando todo parece derrumbarse, Dios te recoge, te abraza, te restaura. Si hoy te sientes solo, recuerda: no estás olvidado. No estás perdido. Eres visto, amado y sostenido por el Padre que nunca abandona. Su fidelidad no tiene fecha de vencimiento. Que esta verdad te acompañe hoy: Dios no se va. Él se queda. Y en su presencia, hay consuelo, propósito y esperanza.',
+      imagen: "imagenes/21-08.jpeg",
+      preguntas: [
+        {
+          texto: '¿Cuando te sentís solo, ¿qué es lo que más necesitás recordar?',
+          opciones: ['Que Dios nunca abandona', 'Que el dolor no es eterno', 'Que siempre hay esperanza']
+        },
+        {
+          texto: '¿Qué significa para vos que “Dios permanece”?',
+          opciones: ['Un abrazo en medio de la soledad', 'Un refugio seguro ante las pruebas', 'Una promesa que me da confianza']
+        },
+        {
+          texto: '¿En los momentos de abandono, ¿qué te sostiene más?',
+          opciones: ['La fe en el amor de Dios', 'El apoyo de personas que sí están', 'La certeza de que vendrán tiempos mejores']
+        }
+      ]
+    },
+    {
+      versiculo: 'Muchas son las aflicciones del justo, pero de todas ellas le librará Jehová',
+      cita: 'Salmos 34:19',
+      reflexion: 'La Victoria en Medio de la Prueba: Hoy, puede que estés en medio de una tormenta. Quizás te sientas abrumado, cansado, o que los problemas no tienen fin. Pero la promesa de Dios es que incluso en este momento difícil, Él está obrando. La prueba que enfrentas no es el final de tu historia, sino un capítulo más que Dios está escribiendo, y en él, la victoria es el desenlace. El Salmo 34:19 nos dice: “Muchas son las aflicciones del justo, pero de todas ellas lo librará Jehová.” Este versículo no niega que tendremos problemas. De hecho, nos recuerda que las aflicciones son parte de la vida. Sin embargo, lo que nos da esperanza es la segunda parte: Dios nos librará de todas ellas. No significa que la prueba desaparecerá de la noche a la mañana, sino que Dios está contigo en el proceso. Él está usando esta situación para fortalecer tu fe, para enseñarte a depender de Él y para mostrar Su poder en tu debilidad. Él está escribiendo una historia de superación, de fe inquebrantable, y de una victoria que no se basa en tus propias fuerzas, sino en Su inmensa gracia. Así que, cuando te sientas desanimado, recuerda: tu prueba no es un punto final, sino una oportunidad para que Dios demuestre Su fidelidad. Mantén tu mirada en Él. El capítulo de aflicción está llegando a su fin, y el de la victoria está a punto de comenzar.',
+      imagen: "imagenes/22-08.jpeg",
+      preguntas: [
+        {
+          texto: '¿Cuando estás en medio de una prueba, ¿qué te cuesta más?',
+          opciones: ['Mantener la fe', 'Confiar en el tiempo de Dios', 'No rendirme ante el cansancio']
+        },
+        {
+          texto: '¿Qué significa para vos la “victoria en medio de la prueba”?',
+          opciones: ['Ver la mano de Dios sosteniéndome', 'Aprender y crecer en la dificultad', 'Descansar en que Dios tiene el control']
+        },
+        {
+          texto: '¿Qué recordás al leer que “de todas ellas lo librará Jehová”?',
+          opciones: ['Que la prueba es temporal', 'Que Dios cumple lo que promete', 'Que siempre hay esperanza en Él']
+        }
+      ]
+    }
+  ];
+
+  // Cambia la reflexión cada 3 días
+ const fechaBase = new Date(2025, 7, 20); // 20 de agosto 2025 (mes 7 = agosto)
+  const hoy = new Date();
+  const diasTranscurridos = Math.floor((hoy - fechaBase) / (1000 * 60 * 60 * 24));
+  const indice = Math.floor(diasTranscurridos / 3) % contenidos.length;
+  const contenido = contenidos[indice];
+
+  // Inserta el contenido en la página
+  document.getElementById('versiculo-texto').innerHTML = `${contenido.versiculo}<br><span class="cita">${contenido.cita}</span>`;
+  document.getElementById('reflexion-texto').textContent = contenido.reflexion;
+  document.getElementById('reflexion-cita').textContent = contenido.cita;
+
+  // Actualiza la imagen de la reflexión
+  document.querySelector('.reflexion img').src = contenido.imagen;
+
+  // Genera las preguntas y opciones
+  let preguntasHtml = '<h2>Preguntas para reflexionar</h2><form>';
+  contenido.preguntas.forEach((pregunta, i) => {
+    preguntasHtml += `<label>${i + 1}. ${pregunta.texto}</label><div>`;
+    pregunta.opciones.forEach((opcion, j) => {
+      preguntasHtml += `<label style="margin-right:1rem;"><input type="radio" name="pregunta${i}" value="${opcion}"> ${opcion}</label>`;
+    });
+    preguntasHtml += `</div><br>`;
+  });
+  preguntasHtml += '</form>';
+  document.getElementById('preguntas-reflexion').innerHTML = preguntasHtml;
+});
+</script>
+</body>
+</html>
